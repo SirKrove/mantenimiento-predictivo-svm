@@ -1,22 +1,43 @@
-# ⚙️ Mantenimiento Predictivo de Rodamientos con Machine Learning
+# ⚙️ Portafolio de Procesamiento de Señales y Machine Learning para Mantenimiento Predictivo
 
-## 📌 Descripción del Proyecto
-Este repositorio contiene el desarrollo de un modelo de Machine Learning aplicado al **mantenimiento predictivo industrial**. El objetivo principal es detectar y clasificar fallas tempranas en rodamientos mecánicos utilizando análisis de señales de vibración. Esta aplicación es un pilar crítico en la industria minera y energética para evitar detenciones operativas no planificadas y optimizar la vida útil de los activos físicos.
+## 📌 Descripción General
+Este repositorio contiene un conjunto integral de proyectos aplicados al **mantenimiento predictivo industrial** y monitoreo de condición (CBM). Los modelos y scripts aquí desarrollados abordan diversas fenomenologías de fallas mecánicas típicas en la minería y energía (desalineamiento en bombas, degradación de rodamientos y contaminación de aceites lubricantes).
 
-Proyecto desarrollado como parte del curso ME7200 en la Facultad de Ciencias Físicas y Matemáticas (FCFM) de la Universidad de Chile.
+Los proyectos fueron desarrollados mediante Python en el marco del curso de especialidad *ME7200* de la Facultad de Ciencias Físicas y Matemáticas (FCFM) de la Universidad de Chile.
 
-## 🛠️ Tecnologías y Metodología
-El pipeline de datos y modelamiento está construido íntegramente en **Python** y se divide en tres etapas clave:
+## 🛠️ Tecnologías y Librerías Utilizadas
+* **Procesamiento de Señales:** `SciPy` (Transformada de Fourier/FFT, Método de Welch, Ventanas de Hann).
+* **Machine Learning Clásico:** `Scikit-Learn` (PCA, K-Medias, Agrupamiento Jerárquico/Ward, Isolation Forest, OCSVM, Random Forest).
+* **Deep Learning y Ensambles:** `TensorFlow/Keras` (Autoencoders, Redes Neuronales Recurrentes LSTM), `XGBoost`.
+* **Análisis de Datos:** `Pandas`, `NumPy`, `Matplotlib`.
 
-1. **Procesamiento de Señales:** Aplicación de la Transformada Rápida de Fourier (FFT) mediante `SciPy` para transitar las señales de vibración del dominio del tiempo al dominio de la frecuencia, permitiendo aislar los armónicos característicos de falla.
-2. **Extracción de Características:** Implementación de **Autoencoders** para reducir la dimensionalidad de los datos y capturar las representaciones latentes más relevantes de la condición del equipo.
-3. **Clasificación de Fallas:** Entrenamiento y validación de un modelo de Máquinas de Vectores de Soporte (**SVM**) a través de `Scikit-Learn` para categorizar el estado de salud del componente (ej. Operación normal, falla en pista interna, falla en elemento rodante).
+---
 
-## 📊 Resultados Destacados
-* Se logró una precisión (*accuracy*) del **[Insertar % aquí, ej. 94%]** en la clasificación de los distintos modos de falla durante la validación cruzada.
-* El pipeline demostró robustez al aislar el ruido de fondo y detectar firmas de vibración anómalas, estableciendo una prueba de concepto viable para el monitoreo de condición (CBM) en motores y chancadoras.
+## 📂 Proyectos Incluidos
 
-## 🚀 Instrucciones de Ejecución
-1. Clonar este repositorio: 
-   ```bash
-   git clone [https://github.com/SirKrove/](https://github.com/SirKrove/)[nombre-de-tu-repositorio].git
+### 1. [Análisis Espectral de Vibraciones en Bombas Centrífugas](./01_Analisis_Espectral_Vibraciones)
+* **Objetivo:** Identificar causa raíz de fallas mediante análisis en el dominio de la frecuencia.
+* **Metodología:** Aplicación del método de Welch y ventaneado de Hann para reducir ruido estocástico (spectral leakage). 
+* **Resultados:** Diagnóstico exitoso de anomalías cinemáticas (desalineamiento paralelo evidenciado por el armónico 2X, y excentricidad del impulsor mediante bandas laterales).
+
+### 2. [Análisis Tribológico de Aceites mediante Clustering](./02_Clustering_Aceites_Lubricantes)
+* **Objetivo:** Segmentar estados de desgaste de descansos mecánicos sin etiquetas previas (Aprendizaje No Supervisado).
+* **Metodología:** Reducción de dimensionalidad mediante Análisis de Componentes Principales (PCA) y partición topológica usando K-Medias y Agrupamiento Jerárquico (Enlace de Ward).
+* **Resultados:** Identificación temprana de degradación físico-química y metales de desgaste para justificar mantenciones preventivas.
+
+### 3. [Detección de Anomalías (Novedades) en Rodamientos](./03_Deteccion_Anomalias_Autoencoders)
+* **Objetivo:** Detectar el instante exacto del inicio de fallas (spalling) en rodamientos sometidos a régimen de desgaste acelerado.
+* **Metodología:** Contraste entre algoritmos estadísticos (Isolation Forest, Mahalanobis) y reconstrucción topológica mediante arquitecturas **Autoencoder** alimentadas por vectores espectrales (FFT).
+
+### 4. [Pronóstico de Vida Útil Remanente (RUL)](./04_Pronostico_Vida_Util_RUL)
+* **Objetivo:** Modelar la trayectoria de degradación y predecir el RUL de rodamientos de bolas.
+* **Metodología:** Contraste entre modelos de regresión estáticos (XGBoost usando Curtosis y RMS) frente a modelos secuenciales (**LSTM**).
+* **Resultados:** Validación de la superioridad de la arquitectura recurrente LSTM para interiorizar dependencias a largo plazo y predecir gradientes de falla con alta precisión ($R^2$ positivo y bajo MAE).
+
+---
+
+## 👨‍💻 Autor
+**Rodrigo Opazo Bucarey**  
+Estudiante de Ingeniería Civil Eléctrica | Universidad de Chile (FCFM)  
+* [LinkedIn]([Pega aquí tu link])
+* [Email](mailto:rodrigo.opazo.b.750@gmail.com)
